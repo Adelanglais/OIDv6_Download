@@ -1,0 +1,12 @@
+argparse
+random
+requests
+os.path
+os
+shutil
+time
+sys
+minio
+minio.error
+PIL
+getpass
