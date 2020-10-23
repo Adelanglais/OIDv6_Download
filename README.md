@@ -72,5 +72,5 @@ Arguments
 3. *--location*: attend "local" ou "minio", l'endroit où seront téléchargées les images
 
 ## Fonctionnement général du programme
-!(https://github.com/Adelanglais/OIDv6_Download/blob/main/Capture%20d%E2%80%99%C3%A9cran%20du%202020-10-23%2011-26-19.png)
+<img src="https://github.com/Adelanglais/OIDv6_Download/blob/main/Capture%20d%E2%80%99%C3%A9cran%20du%202020-10-23%2011-26-19.png"/>
 
