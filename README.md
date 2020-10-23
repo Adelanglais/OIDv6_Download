@@ -1,7 +1,9 @@
 # downloadImages-OIDv6
-This code allows to download images from OpenImages dataset to a Minio conatainer in a single command line for storage in object mode.  
-Each object is composed of the image itself and its metadata: datas are said to be **unstructured**.  
-This type of storage offers many advantages: easily scalable environments, guaranteed availability and integrity of the data for the customer.
+**Objectif du programme:**  
+Ce code permet en une seule ligne de commande de télécharger des images depuis OpenImages dataset. Vous pouvez choisir de les télécharger dans votre répertoire local ou bien de les stocker en mode objet sur un serveur Minio.
+
+*Qu'est-ce que le stockage objet?*  
+Un objet est composé d'un fichier (texte, image, vidéo, son...etc) auquel on associe ses métadonnées (date de création, auteur, taille, titre...etc). Un espace de stockage en mode objet permet donc un stockage à plat des données puisqu'il n'y a aucune hiérarchisation : les données sont dites non structurées. Ce type de stockage présente de nombreux intérêts: environnements facilement scalables, garantie pour le client de la disponibilité et de l'intégirité des données.
 
 ## Installation
 _Python3 is required_
