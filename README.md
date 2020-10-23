@@ -1,5 +1,7 @@
 # downloadImages-OIDv6
-**Objectif du programme:**  
+
+## Général
+*Objectif du programme:*  
 Ce code permet en une seule ligne de commande de télécharger des images depuis OpenImages dataset. Vous pouvez choisir de les télécharger dans votre répertoire local ou bien de les stocker en mode objet sur un serveur Minio.
 
 *Qu'est-ce que le stockage objet?*  
