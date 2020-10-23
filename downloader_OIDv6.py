@@ -196,31 +196,11 @@ def downloadLocal(url_list,path):
             shutil.move(filename,path)
     print('Done!')
 
-def getEndpoint():
-    print("Please, identify yourself.")
-    url = input("Port number : ")
-    url = 'localhost:'+url
-    return url
-
-def getID():
-    ID = getpass.getpass("Enter your username : ")
-    return ID
-
-def getMP():
-    MP = getpass.getpass("Enter your password : ")
-    return MP
-
-def getMinioClient(url,ID,MP):
-    """
-    Minio Client initialisation
-    """
-    return Minio(
-        url,
-        access_key= ID,
-        secret_key= MP,
-        secure=False
-    )
-
+# def getEndpoint():
+#     print("Please, identify yourself.")
+#     url = input("Port number : ")
+#     url = 'localhost:'+url
+#     return url
 if parser_arguments().command == 'downloader':
     if parser_arguments().classes is None:
         print('Missing classes argument')
@@ -242,9 +222,28 @@ if parser_arguments().command == 'downloader':
             downloadLocal(getImgURL(getImgList(getIdClass())),getPath())
             exit(1)
 
+def getID():
+    ID = getpass.getpass("Enter your username : ")
+    return ID
+
+def getMP():
+    MP = getpass.getpass("Enter your password : ")
+    return MP
+
+def getMinioClient(ID,MP):
+    """
+    Minio Client initialisation
+    """
+    return Minio(
+        'localhost:9000',
+        access_key= ID,
+        secret_key= MP,
+        secure=False
+    )
+
 if __name__ == "__main__":
 
-    minioClient = getMinioClient(getEndpoint(),getID(),getMP())
+    minioClient = getMinioClient(getID(),getMP())
 
     def makeBucket():
         """
@@ -259,7 +258,7 @@ if __name__ == "__main__":
             print('The bucket {} already exists.'.format(parser_arguments().classes))
             pass
 
-    def downloadMinio(url_list,list_d,threads = 5):
+    def downloadMinio(url_list,list_d):
         """
         Download the image and its metadata with the url of the list
         """
@@ -267,7 +266,6 @@ if __name__ == "__main__":
         print("Please, be patient :)")
         name = "-".join(parser_arguments().classes)
         name = name.lower()
-        pool = ThreadPool(10)
         for i in range(len(url_list)):
             filename= url_list[i].split("/")[-1] # name of the picture file
             r = requests.get(url_list[i], stream =True)
@@ -284,16 +282,11 @@ if __name__ == "__main__":
                     minioClient.fput_object(name,filename,path,'image/jpg',metadata)
                     os.remove(filename)
                     print(filename,'have been successfuly uploaded')
-
-        pool.close()
-        pool.join()
         print('Done!')
 
-        if parser_arguments().location is not None:
-            location = "-".join(parser_arguments().location)
-            location = location.lower()
-
-            if location == 'minio':
-                makeBucket()
-                downloadMinio(getImgURL(getImgList(getIdClass())), getMetadata(getImgList(getIdClass())))
-                exit(1)
+    if parser_arguments().location is not None:
+        location = "-".join(parser_arguments().location)
+        location = location.lower()
+        if location == 'minio':
+            makeBucket()
+            downloadMinio(getImgURL(getImgList(getIdClass())), getMetadata(getImgList(getIdClass())))
