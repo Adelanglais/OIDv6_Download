@@ -9,7 +9,7 @@ import time
 import sys
 from minio import Minio
 from minio.error import ResponseError
-from PIL import Image
+#from PIL import Image
 import getpass
 
 def parser_arguments():
@@ -63,10 +63,11 @@ def getIdClass():
     f=open('csv_files/class-descriptions-boxable.csv',"r",encoding='utf8')
     for l in f:
         a=0
-        while a < 599:
+        while a < 600:
             l = f.readline()
             mots = l.split(",")
-            name = mots[1].replace(" ","")
+            name = mots[1]
+            name = name.replace(" ","")
 
             if classe in name:
                 id_classe = mots[0]
@@ -123,19 +124,20 @@ def printURL(url_list):
 if parser_arguments().command == 'listClasses':
     print("List of all classes.")
     getListClasses()
+    exit(1)
 
 if parser_arguments().command == 'getURL':
     if parser_arguments().classes is None:
         print('Missing classes argument')
         exit (1)
-    else:
-        print("Get URL of {} class.".format(parser_arguments().classes))
-        printURL(getImgURL(getImgList(getIdClass())))
-
-
     if parser_arguments().limit is None:
         print('Missing the desired number of images')
         exit (1)
+
+    else:
+        print("Get URL of {} class.".format(parser_arguments().classes))
+        printURL(getImgURL(getImgList(getIdClass())))
+        exit(1)
 
 def getMetadata(img_list):
     """
