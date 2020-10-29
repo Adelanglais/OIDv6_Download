@@ -52,7 +52,7 @@ _Exemple d'utilisation du programme_
 python3 downloader_OIDv6.py downloader --classe Dog --limit 10 --location local
 ```
 
-## Commands list
+## Liste descommandes
 1. *downloader* : pour effectuer un téléchargement (en local ou sur Minio)
 ```bash
 python3 downloader_OIDv6.py downloader --classe [exemple] --limit [exemple] --location [local ou minio]
@@ -72,3 +72,5 @@ Arguments
 3. *--location*: attend "local" ou "minio", l'endroit où seront téléchargées les images
 
 ## Fonctionnement général du programme
+<img src="https://github.com/Adelanglais/OIDv6_Download/blob/main/Capture%20d%E2%80%99%C3%A9cran%20du%202020-10-23%2011-26-19.png"/>
+
